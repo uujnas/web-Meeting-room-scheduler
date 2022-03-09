@@ -21,6 +21,7 @@ class RoomsController < ApplicationController
   # POST /rooms
   def create
     @room = Room.new(room_params)
+    @room.user = current_user
 
     if @room.save
       redirect_to room_url(@room), notice: 'Room was successfully created.'
@@ -52,6 +53,6 @@ class RoomsController < ApplicationController
   end
 
   def room_params
-    params.require(:room).permit(:description, :user_id)
+    params.require(:room).permit(:description)
   end
 end
