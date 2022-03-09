@@ -1,9 +1,9 @@
 
 <p style="color: green"><%= notice %></p>
 
-<section class="rooms-header d-flex align-items-center justify-content-between pt-3">
-  <h4 class="text-primary">Rooms</h4>
-  <%= link_to "New room", new_room_path, class: "btn btn-sm btn-primary" %>
+<section class="rooms-header d-flex align-items-center justify-content-between pt-3 mb-1">
+  <h4 class="text-primary mb-0">Rooms</h4>
+  <%= link_to "New room", new_room_path, class: "btn btn-primary " %>
 </section>
 
 <table class="table table-hover">
@@ -23,9 +23,13 @@
         <td><%= room.description %></td>
         <td><%= room.user.email %></td>
         <td><%= room.created_at %></td>
-        <td class="d-flex align-items-center justify-content-end">
-          <%= link_to "View", room, class: "btn btn-sm btn-success" %> 
-          <%= button_to "Remove", room, class: "btn btn-sm btn-danger", method: :delete %>
+        <td>
+          <div class="room-actions d-flex align-items-center justify-content-end">
+            <%= link_to "View", room, class: "btn btn-sm btn-success" %> &nbsp;
+            <%= link_to "Edit", edit_room_path(room), class: "btn btn-primary btn-sm" %> &nbsp;
+            <%= button_to "Remove", room, class: "btn btn-sm btn-danger", method: :delete %>
+            &nbsp;
+          </div>
         </td>
       </tr>
     <% end %>
