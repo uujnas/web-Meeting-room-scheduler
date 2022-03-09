@@ -13,9 +13,9 @@
 
   <div>
     <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
+    <%= form.text_area :description, class: "form-control" %>
   </div>
-  <div>
-    <%= form.submit %>
+  <div class="mt-3 d-flex justify-content-end">
+    <%= form.submit "Save", class: "btn btn-primary" %>
   </div>
 <% end %>
