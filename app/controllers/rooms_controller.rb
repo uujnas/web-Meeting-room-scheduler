@@ -24,7 +24,7 @@ class RoomsController < ApplicationController
     @room.user = current_user
 
     if @room.save
-      redirect_to room_url(@room), notice: 'Room was successfully created.'
+      redirect_to rooms_path, notice: 'Room was successfully created.'
     else
       render :new, status: :unprocessable_entity
     end
