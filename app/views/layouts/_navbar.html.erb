@@ -24,10 +24,8 @@
           </div>
         <% else %>
           <div class="nav-item_">
-            <%= link_to 'Sign UP', new_user_registration_path, class: "btn btn-sm btn-primary" %>
-          </div>
-          <div class="nav-item_">
-            <%= link_to 'Sign In', new_user_session_path, class: "btn btn-sm btn-success" %>
+            <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-sm btn-primary" %>
+            <%= link_to 'Login', new_user_session_path, class: "ml-2 btn btn-sm btn-success" %>
           </div>
         <% end %>
       </div>
