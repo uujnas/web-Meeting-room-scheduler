@@ -24,7 +24,7 @@ class MeetingsController < ApplicationController
   # POST /meetings
   def create
     @meeting = Meeting.new(meeting_params)
-    save_members
+    # save_members
 
     if @meeting.save
       redirect_to meeting_url(@meeting), notice: "Meeting was successfully created."
@@ -36,7 +36,7 @@ class MeetingsController < ApplicationController
   # PATCH/PUT /meetings/1
   def update
     if @meeting.update(meeting_params)
-      save_members
+      # save_members
       redirect_to meeting_url(@meeting), notice: "Meeting was successfully updated."
     else
       render :edit, status: :unprocessable_entity
@@ -58,12 +58,5 @@ class MeetingsController < ApplicationController
 
   def meeting_params
     params.require(:meeting).permit(:subject, :room_id, :date, :start_time, :end_time, :user_id, members: [])
-  end
-
-  def save_members
-    members = params[:meeting][:members]
-    p members
-    # @meeting.members = members
-    # @meeting.save
   end
 end
