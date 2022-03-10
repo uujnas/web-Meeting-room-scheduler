@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="#">Meeting Rooom Scheduler</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <% if user_signed_in? %>
+        <li class="nav-item">
+        <span class="nav-link text-white">WELCOME, <%= current_user.username.titleize %> !!</span>
+        </li>
+        <li class="nav-item">
+          <%= button_to 'SIGN OUT', destroy_user_session_path, method: :delete,  class:"nav-link btn-danger btn-sm" %>
+        </li>
+        <% else %>
+        <li class="nav-item">
+          <%= link_to 'Sign UP', new_user_registration_path, class: "nav-link text-primary" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Sign In', new_user_session_path, class: "nav-link text-primary" %>
+        </li>
+
+        <% end %>
+    </div>
+  </div>
+</nav>
