@@ -1,12 +1,14 @@
-<div id="<%= dom_id room %>">
-  <p>
-    <strong>Description:</strong>
-    <%= room.description %>
-  </p>
+<section class="container">
+  <div id="<%= dom_id room %>">
+    <p>
+      <strong>Description:</strong>
+      <%= room.description %>
+    </p>
 
-  <p>
-    <strong>User:</strong>
-    <%= room.user_id %>
-  </p>
+    <p>
+      <strong>Room Created By:</strong>
+      <%= room.user.email %>
+    </p>
 
-</div>
+  </div>
+</section>
