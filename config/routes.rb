@@ -2,8 +2,8 @@
 
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-    confirmations: 'confirmations'
+    confirmations: "confirmations"
   }
   resources :rooms
-  root 'dashboards#index'
+  root "rooms#index"
 end
