@@ -73,11 +73,11 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.delivery_method = :smtp
   {
-    user_name: ENV['USERNAME'],
+    user_name: ENV['USER_NAME'],
     password: ENV['PASSWORD'],
     address: ENV['ADDRESS'],
     domain: ENV['DOMAIN'],
-    port: ENV['PORT'],
+    port: 2525,
     authentication: :cram_md5
   }
 end
