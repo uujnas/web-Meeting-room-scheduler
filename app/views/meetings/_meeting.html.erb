@@ -1,39 +1,45 @@
-<div id="<%= dom_id meeting %>">
-  <p>
-    <strong>Subject:</strong>
-    <%= meeting.subject %>
-  </p>
+<section class="container mt-2">
+  <div id="<%= dom_id meeting %>">
 
-  <p>
-    <strong>Members:</strong>
-    <% meeting.members.each do |member| %>
-      <div><%= member %></div>
-    <% end %>
-  </p>
+    <table class="table table-striped">
+       
+         <tr>
+            <th>Subject:</th>
+            <td><%= meeting.subject %></td>
+          </tr>
+          <tr>
+            <th>Host by:</th>
+            <td><%= meeting.user.email %></td>
+          </tr>
 
-  <p>
-    <strong>Room no:</strong>
-    <%= meeting.room_id %>
-  </p>
+          <tr>
+            <th><strong>Room no:</strong></th>
+            <td><%= link_to "Room-#{meeting.room_id}", room_path(meeting.room) %></td>
+          </tr>
 
-  <p>
-    <strong>Date:</strong>
-    <%= meeting.date %>
-  </p>
+          <tr>
+            <th>Date:</th>
+            <td><%= meeting.date %></td>
+          </tr>
 
-  <p>
-    <strong>Start time:</strong>
-    <%= meeting.time_format(meeting.start_time) %>
-  </p>
+          <tr>
+            <th>Start time:</th>
+            <td><%= meeting.time_format(meeting.start_time) %></td>
+          </tr>
 
-  <p>
-    <strong>End time:</strong>
-    <%= meeting.time_format(meeting.end_time) %>
-  </p>
+          <tr>
+            <th>End time:</th>
+            <td><%= meeting.time_format(meeting.end_time) %></td>
+          </tr>
 
-  <p>
-    <strong>Host by:</strong>
-    <%= meeting.user_id %>
-  </p>
-
-</div>
+          <tr>
+            <th><strong>Members:</strong></th>
+            <td>
+              <% meeting.members.each do |member| %>
+                <div><%= member %></div>
+              <% end %>
+            </td>
+          </tr>
+    </table>
+  </div>
+</section>
