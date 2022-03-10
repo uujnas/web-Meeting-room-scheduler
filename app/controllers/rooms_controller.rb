@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 # Rooms Controller
 class RoomsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_room, only: %i[show edit update destroy]
 
   # GET /rooms
@@ -24,7 +27,7 @@ class RoomsController < ApplicationController
     @room.user = current_user
 
     if @room.save
-      redirect_to rooms_path, notice: 'Room was successfully created.'
+      redirect_to rooms_path, notice: "Room was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,7 +36,7 @@ class RoomsController < ApplicationController
   # PATCH/PUT /rooms/1
   def update
     if @room.update(room_params)
-      redirect_to room_url(@room), notice: 'Room was successfully updated.'
+      redirect_to room_url(@room), notice: "Room was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -43,7 +46,7 @@ class RoomsController < ApplicationController
   def destroy
     @room.destroy
 
-    redirect_to rooms_url, notice: 'Room was successfully destroyed.'
+    redirect_to rooms_url, notice: "Room was successfully destroyed."
   end
 
   private
