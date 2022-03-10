@@ -23,12 +23,12 @@
 
   <p>
     <strong>Start time:</strong>
-    <%= meeting.start_time %>
+    <%= meeting.time_format(meeting.start_time) %>
   </p>
 
   <p>
     <strong>End time:</strong>
-    <%= meeting.end_time %>
+    <%= meeting.time_format(meeting.end_time) %>
   </p>
 
   <p>
