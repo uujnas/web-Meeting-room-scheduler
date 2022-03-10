@@ -1,0 +1,39 @@
+<div id="<%= dom_id meeting %>">
+  <p>
+    <strong>Subject:</strong>
+    <%= meeting.subject %>
+  </p>
+
+  <p>
+    <strong>Members:</strong>
+    <% meeting.members.each do |member| %>
+      <div><%= member %></div>
+    <% end %>
+  </p>
+
+  <p>
+    <strong>Room no:</strong>
+    <%= meeting.room_id %>
+  </p>
+
+  <p>
+    <strong>Date:</strong>
+    <%= meeting.date %>
+  </p>
+
+  <p>
+    <strong>Start time:</strong>
+    <%= meeting.start_time %>
+  </p>
+
+  <p>
+    <strong>End time:</strong>
+    <%= meeting.end_time %>
+  </p>
+
+  <p>
+    <strong>Host by:</strong>
+    <%= meeting.user_id %>
+  </p>
+
+</div>
