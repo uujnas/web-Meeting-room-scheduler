@@ -5,14 +5,18 @@
       Room Details: 
     </h4>
     <div>
-      <%= link_to "Edit", edit_room_path(@room), class: "btn btn-sm btn-primary" %>
+      <% if can? :update, @room %>
+        <%= link_to "Edit", edit_room_path(@room), class: "btn btn-sm btn-primary" %>
+      <% end %>
       <%= link_to "Back", :back, class: "btn btn-sm btn-secondary" %>
     </div>
   </div>
   <%= render @room %>
 
-  <div>
-    <%= button_to "Destroy this room", @room, method: :delete, class: "btn btn-danger btn-sm" %>
-  </div>
+  <% if can? :destroy, @room %>
+    <div>
+      <%= button_to "Destroy this room", @room, method: :delete, class: "btn btn-danger btn-sm" %>
+    </div>
+  <% end %>
 </section>
 

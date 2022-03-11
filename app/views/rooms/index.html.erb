@@ -24,14 +24,14 @@
       <td><%= room.user.username.titleize %></td>
       <td><%= room.created_at %></td>
       <td>
-        <% if can? :read, @room %>
         <div class="room-actions d-flex align-items-center justify-content-end">
           <%= link_to "View", room, class: "btn btn-sm btn-success" %> &nbsp;
+        <% if can? :update, @room %>
           <%= link_to "Edit", edit_room_path(room), class: "btn btn-primary btn-sm" %> &nbsp;
           <%= button_to "Remove", room, class: "btn btn-sm btn-danger", method: :delete %>
           &nbsp;
-        </div>
         <% end %>
+        </div>
       </td>
     </tr>
     <% end %>
