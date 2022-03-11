@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Meeting Controller
-class MeetingsController < ApplicationController
+class MeetingsController < DashboardsController
   before_action :authenticate_user!
   before_action :set_meeting, only: %i[show edit update destroy]
 
