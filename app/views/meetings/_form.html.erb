@@ -2,8 +2,6 @@
   <%= form_with(model: meeting) do |form| %>
     <% if meeting.errors.any? %>
       <div style="color: red">
-        <h2><%= pluralize(meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
-
         <ul>
           <% meeting.errors.each do |error| %>
             <li><%= error.full_message %></li>
@@ -18,13 +16,17 @@
     </div>
 
     <div class="mb-3">
-      <%= form.label :members, class: "form-label" %>
+      <%= form.label :members, class: "form-check-label" %>
       <% User.pluck(:email).each do |member| %>
-        <div>
-          <input type="checkbox" name= "meeting[members][]" value=<%= member%>class= "form-control"   /><%= member%>
+        <div class="form-check">
+          <input class="form-check-input" id=<%= member%> 
+            <%= meeting.members.include?(member)? "checked": "" %> 
+            type="checkbox" name= "meeting[members][]" 
+            value=<%= member%>  
+          />
+          <label class="form-check-label" for=<%= member %>><%= member%></label>
         </div>
       <% end %>
-      
     </div>
 
     <div class="mb-3">
