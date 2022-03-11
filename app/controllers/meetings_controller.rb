@@ -55,6 +55,20 @@ class MeetingsController < DashboardsController
     redirect_to meetings_url, notice: "Meeting was successfully destroyed."
   end
 
+  def send_mails
+    authorize! :update, Meeting
+    @meeting = Meeting.find_by_id(params[:meeting])
+    if @meeting
+      @meeting.members.each do |member|
+        MeetingMailer.with(meeting: @meeting, member: member).send_mail.deliver_now
+      end
+
+      redirect_to send_mails_path, notice: "Mail is sent to all members."
+    else
+      redirect_to send_mails_path, alert: "Could not sent mails."
+    end
+  end
+
   private
 
   def set_meeting

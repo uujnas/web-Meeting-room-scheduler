@@ -10,12 +10,11 @@
         <li class="nav-item ">
           <span class="nav-link active badge bg-primary"><%= current_user.role.titleize %></span>
         </li>
-
       </ul>
       <div class="d-flex align-items-center">
         <% if user_signed_in? %>
           <div class="nav-item_">
-          <span class="nav-link text-white">WELCOME, <%= current_user.username.titleize %> !!</span>
+            <span class="nav-link text-white">WELCOME, <%= current_user.username.titleize %> !!</span>
           </div>
           <div class="nav-item_">
             <%= button_to 'SIGN OUT', destroy_user_session_path, method: :delete,  class:"btn btn-danger btn-sm" %>
