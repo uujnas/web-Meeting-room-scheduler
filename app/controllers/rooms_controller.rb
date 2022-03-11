@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 # Rooms Controller
-class RoomsController < ApplicationController
-  before_action :authenticate_user!
+class RoomsController < DashboardsController
   before_action :set_room, only: %i[show edit update destroy]
 
   # GET /rooms
@@ -16,13 +15,17 @@ class RoomsController < ApplicationController
   # GET /rooms/new
   def new
     @room = Room.new
+    authorize! :create, Room
   end
 
   # GET /rooms/1/edit
-  def edit; end
+  def edit
+    authorize! :update, Room
+  end
 
   # POST /rooms
   def create
+    authorize! :create, Room
     @room = Room.new(room_params)
     @room.user = current_user
 
@@ -44,6 +47,7 @@ class RoomsController < ApplicationController
 
   # DELETE /rooms/1
   def destroy
+    authorize! :update, Room
     @room.destroy
 
     redirect_to rooms_url, notice: "Room was successfully destroyed."
