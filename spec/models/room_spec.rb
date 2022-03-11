@@ -54,4 +54,8 @@ RSpec.describe Room, type: :model do
      file"
     expect(room).to_not be_valid
   end
+
+  context 'associations' do
+    it { should belong_to(:user).class_name("User") }
+  end
 end
