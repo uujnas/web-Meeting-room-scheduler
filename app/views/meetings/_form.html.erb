@@ -36,17 +36,17 @@
 
     <div class="mb-3">
       <%= form.label :date, class: "form-label" %>
-      <%= form.date_field :date, class: "form-control"  %>
+      <%= form.date_field :date, class: "form-control", required: true %>
     </div>
 
     <div class="mb-3">
       <%= form.label :start_time, class: "form-label" %>
-      <%= form.time_field :start_time, class: "form-control"  %>
+      <%= form.time_field :start_time, class: "form-control", required: true %>
     </div>
 
     <div class="mb-3">
       <%= form.label :end_time, class: "form-label" %>
-      <%= form.time_field :end_time, class: "form-control"  %>
+      <%= form.time_field :end_time, class: "form-control", required: true %>
     </div>
 
     <div class="mb-3">
