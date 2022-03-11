@@ -2,17 +2,6 @@
 <section class="container">
   <p style="color: green"><%= notice %></p>
 
-<<<<<<< HEAD
-<div>
-<% if can? :read, current_user %>
-  <%= link_to "Edit this room", edit_room_path(@room) %> |
-  <%= link_to "Back to rooms", rooms_path %>
-
-  <%= button_to "Destroy this room", @room, method: :delete %>
-  <% end %>
-</div>
-
-=======
   <div class="d-flex justify-content-between align-items-center">
     <h4 class="text-success">
       Room Details: 
@@ -29,4 +18,3 @@
   </div>
 </section>
 
->>>>>>> 232ea48d533cb9524f305541362d623183d5934c
