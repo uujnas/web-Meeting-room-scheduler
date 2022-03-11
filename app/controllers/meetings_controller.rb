@@ -20,7 +20,9 @@ class MeetingsController < DashboardsController
   end
 
   # GET /meetings/1/edit
-  def edit; end
+  def edit
+    authorize! :update, Meeting
+  end
 
   # POST /meetings
   def create
@@ -38,7 +40,7 @@ class MeetingsController < DashboardsController
 
   # PATCH/PUT /meetings/1
   def update
-    authorize! :create, Meeting
+    authorize! :update, Meeting
     if @meeting.update(meeting_params)
       # save_members
       redirect_to meeting_url(@meeting), notice: "Meeting was successfully updated."
@@ -49,7 +51,7 @@ class MeetingsController < DashboardsController
 
   # DELETE /meetings/1
   def destroy
-    authorize! :create, Meeting
+    authorize! :destroy, Meeting
     @meeting.destroy
 
     redirect_to meetings_url, notice: "Meeting was successfully destroyed."
