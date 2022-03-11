@@ -1,0 +1,20 @@
+<p style="color: green"><%= notice %></p>
+
+<section class="container meeting-header" >
+ <div class="d-flex justify-content-between align-items-center">
+   <h4 class="text-success">
+    Meeting Details:
+  </h4>
+
+  <div class="meeting-details-actions">
+    <%= link_to "Edit this meeting", edit_meeting_path(@meeting), class: "btn btn-success btn-sm" %> &nbsp;
+    <%= link_to "Back to meetings", meetings_path, class: "btn btn-primary btn-sm" %>
+  </div>
+ </div>
+</section>
+
+<%= render @meeting %>
+
+<div class="d-flex justify-content-end" >
+  <%= button_to "Delete this meeting", @meeting, method: :delete, class: "btn btn-sm btn-danger" %>
+</div>

@@ -1,5 +1,8 @@
+# frozen_string_literal: true
+
 # Rooms Controller
 class RoomsController < DashboardsController
+  before_action :authenticate_user!
   before_action :set_room, only: %i[show edit update destroy]
 
   # GET /rooms
