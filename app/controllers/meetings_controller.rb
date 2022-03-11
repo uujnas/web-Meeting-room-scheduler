@@ -56,6 +56,7 @@ class MeetingsController < DashboardsController
   end
 
   def send_mails
+    authorize! :update, Meeting
     @meeting = Meeting.find_by_id(params[:meeting])
     if @meeting
       @meeting.members.each do |member|
