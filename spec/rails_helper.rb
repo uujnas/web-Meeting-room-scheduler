@@ -31,6 +31,8 @@ rescue ActiveRecord::PendingMigrationError => e
   exit 1
 end
 RSpec.configure do |config|
+  config.include Devise::Test::IntegrationHelpers, type: :request
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
@@ -65,6 +67,17 @@ RSpec.configure do |config|
     config.integrate do |with|
       with.test_framework :rspec
       with.library :rails
-   end
+    end
   end
+
+  # def login(user)
+  #   user = User.first_or_create!(email: "sanju@gmail.com", password: "password",
+  #                                 password_confirmation: "password", role: "admin")
+  #   user.confirm
+  #   current_user = user.id
+  # end
+
+  # def current_user
+  #   User.find(current_user)
+  # end
 end
