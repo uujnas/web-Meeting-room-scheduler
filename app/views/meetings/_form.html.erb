@@ -1,57 +1,67 @@
-<%= form_with(model: meeting) do |form| %>
-  <% if meeting.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(meeting.errors.count, "error") %> prohibited this meeting from being saved:</h2>
-
-      <ul>
-        <% meeting.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :subject, style: "display: block" %>
-    <%= form.text_field :subject %>
-  </div>
-
-  <div>
-    <%= form.label :members, style: "display: block" %>
-    <% User.pluck(:email).each do |member| %>
-      <div>
-        <input type="checkbox" name= "meeting[members][]" value=<%= member%> /><%= member%>
+<section class="container meeting-form-container">
+  <%= form_with(model: meeting) do |form| %>
+    <% if meeting.errors.any? %>
+      <div style="color: red">
+        <ul>
+          <% meeting.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
       </div>
     <% end %>
-     
-  </div>
 
-  <div>
-    <%= form.label :room_id, style: "display: block" %>
-    <%= form.select :room_id, Room.pluck(:id).map { |room| ["Room-#{room}", room]} %>
-  </div>
+    <div class="mb-3">
+      <%= form.label :subject, class: "form-label" %>
+      <%= form.text_field :subject, class: "form-control" %>
+    </div>
 
-  <div>
-    <%= form.label :date, style: "display: block" %>
-    <%= form.date_field :date %>
-  </div>
+    <div class="mb-3">
+      <%= form.label :members, class: "form-check-label" %>  
+      <% if meeting[:members].size > 0 %>
+        <span class="badge bg-success position-relative">
+          Selected 
+          <span class="badge bg-danger"><%= meeting[:members].size %> </span>
+        </span>
+      <% end %>
+      <% User.pluck(:email).each do |member| %>
+        <div class="form-check">
+          <input class="form-check-input" id=<%= member%> 
+            <%= meeting.members.include?(member)? "checked": "" %> 
+            type="checkbox" name= "meeting[members][]" 
+            value=<%= member%>  
+          />
+          <label class="form-check-label" for=<%= member %>><%= member%></label>
+        </div>
+      <% end %>
+    </div>
 
-  <div>
-    <%= form.label :start_time, style: "display: block" %>
-    <%= form.time_field :start_time %>
-  </div>
+    <div class="mb-3">
+      <%= form.label :room_id, class: "form-label" %>
+      <%= form.select :room_id, Room.pluck(:id).map { |room| ["Room-#{room}", room]}, {}, class: "form-select"  %>
+    </div>
 
-  <div>
-    <%= form.label :end_time, style: "display: block" %>
-    <%= form.time_field :end_time %>
-  </div>
+    <div class="mb-3">
+      <%= form.label :date, class: "form-label" %>
+      <%= form.date_field :date, class: "form-control", required: true %>
+    </div>
 
-  <div>
-    <%= form.label :user_id, "Host By", style: "display: block" %>
-    <%= form.select :user_id, User.pluck(:email, :id) %>
-  </div>
+    <div class="mb-3">
+      <%= form.label :start_time, class: "form-label" %>
+      <%= form.time_field :start_time, class: "form-control", required: true %>
+    </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+    <div class="mb-3">
+      <%= form.label :end_time, class: "form-label" %>
+      <%= form.time_field :end_time, class: "form-control", required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :user_id, "Host By", class: "form-label" %>
+      <%= form.select :user_id, User.pluck(:email, :id), {}, class: "form-select" %>
+    </div>
+
+    <div class="mb-3 d-flex">
+      <%= form.submit "Save", class: "flex-grow-1 btn btn-sm btn-primary" %>
+    </div>
+  <% end %>
+</section>

@@ -1,9 +1,7 @@
-<h1>New meeting</h1>
 
+<div class="d-flex justify-content-between align-items-center">
+  <h4 class="text-primary">New meeting</h4>
+  <%= link_to "Back to meetings", meetings_path, class: "btn btn-secondary btn-sm" %>
+</div>
 <%= render "form", meeting: @meeting %>
 
-<br>
-
-<div>
-  <%= link_to "Back to meetings", meetings_path %>
-</div>

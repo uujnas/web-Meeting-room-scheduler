@@ -29,6 +29,7 @@ class MeetingsController < DashboardsController
     if @meeting.save
       redirect_to meeting_url(@meeting), notice: "Meeting was successfully created."
     else
+      # binding.break
       render :new, status: :unprocessable_entity
     end
   end
