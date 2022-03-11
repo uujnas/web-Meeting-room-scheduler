@@ -1,7 +1,9 @@
 
 <section class="rooms-header d-flex align-items-center justify-content-between pt-3 mb-1">
   <h4 class="text-primary mb-0">Meetings</h4>
-  <%= link_to "New Meeting", new_meeting_path, class: "btn btn-primary " %>
+   <% if can? :read, @meetings %>
+    <%= link_to "New Meeting", new_meeting_path, class: "btn btn-primary " %>
+  <% end %>
 </section>
 
 <table class="table table-hover">
@@ -24,8 +26,10 @@
         <td>
           <div class="meeting-actions d-flex align-items-center justify-content-end">
             <%= link_to "View", meeting, class: "btn btn-sm btn-success" %> &nbsp;
-            <%= link_to "Edit", edit_meeting_path(meeting), class: "btn btn-primary btn-sm" %> &nbsp;
-            <%= button_to "Remove", meeting, class: "btn btn-sm btn-danger", method: :delete %>
+             <% if can? :update, meeting %>
+              <%= link_to "Edit", edit_meeting_path(meeting), class: "btn btn-primary btn-sm" %> &nbsp;
+              <%= button_to "Remove", meeting, class: "btn btn-sm btn-danger", method: :delete %>
+             <% end %>
             &nbsp;
           </div>
         </td>

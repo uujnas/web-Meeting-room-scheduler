@@ -6,7 +6,9 @@
   </h4>
 
   <div class="meeting-details-actions">
-    <%= link_to "Edit this meeting", edit_meeting_path(@meeting), class: "btn btn-success btn-sm" %> &nbsp;
+    <% if can? :update, @meeting %>
+      <%= link_to "Edit this meeting", edit_meeting_path(@meeting), class: "btn btn-success btn-sm" %> &nbsp;
+    <% end%>
     <%= link_to "Back to meetings", meetings_path, class: "btn btn-primary btn-sm" %>
   </div>
  </div>
@@ -14,6 +16,8 @@
 
 <%= render @meeting %>
 
-<div class="d-flex justify-content-end" >
-  <%= button_to "Delete this meeting", @meeting, method: :delete, class: "btn btn-sm btn-danger" %>
-</div>
+<% if can? :destroy, @meeting %>
+  <div class="d-flex justify-content-end" >
+    <%= button_to "Delete this meeting", @meeting, method: :delete, class: "btn btn-sm btn-danger" %>
+  </div>
+<% end %>
