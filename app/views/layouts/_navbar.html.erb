@@ -1,28 +1,34 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="#">Meeting Rooom Scheduler</a>
+    <%= link_to "Meeting Room Scheduler", root_path, class: "navbar-brand" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to "Rooms", rooms_path, class: "nav-link active" %>
+        </li>
+         <li class="nav-item">
+          <%= link_to "Meetings", meetings_path, class: "nav-link active" %>
+        </li>
+      </ul>
+      <div class="d-flex align-items-center">
         <% if user_signed_in? %>
-        <li class="nav-item">
-        <span class="nav-link text-white">WELCOME, <%= current_user.username.titleize %> !!</span>
-        </li>
-        <li class="nav-item">
-          <%= button_to 'SIGN OUT', destroy_user_session_path, method: :delete,  class:"nav-link btn-danger btn-sm" %>
-        </li>
+          <div class="nav-item_">
+          <span class="nav-link text-white">WELCOME, <%= current_user.username.titleize %> !!</span>
+          </div>
+          <div class="nav-item_">
+            <%= button_to 'SIGN OUT', destroy_user_session_path, method: :delete,  class:"btn btn-danger btn-sm" %>
+          </div>
         <% else %>
-        <li class="nav-item">
-          <%= link_to 'Sign UP', new_user_registration_path, class: "nav-link text-primary" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Sign In', new_user_session_path, class: "nav-link text-primary" %>
-        </li>
-
+          <div class="nav-item_">
+            <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-sm btn-primary" %>
+            <%= link_to 'Login', new_user_session_path, class: "ml-2 btn btn-sm btn-success" %>
+          </div>
         <% end %>
+      </div>
     </div>
   </div>
 </nav>
