@@ -10,16 +10,17 @@
 </head>
 
 <body>
-  <%= render 'layouts/navbar' %>
+  <%= render "layouts/navbar" %>
   <div id="wrapper">
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
       <ul class="sidebar-nav">
-        <li><%= link_to 'Rooms', rooms_path %></li>
-        <li><%= link_to 'Meeting', rooms_path %></li>
+        <li><%= link_to "Rooms", rooms_path, class: "nav-link active" %></li>
+         <li> <%= link_to "Meetings", meetings_path, class: "nav-link active" %></li>
       </ul>
     </div>
     <section class="container">
+      <%= render "layouts/flash_alert" %>
       <%= yield %>
     </section>
   </div>
