@@ -54,8 +54,8 @@
       <%= form.select :user_id, User.pluck(:email, :id), {}, class: "form-select" %>
     </div>
 
-    <div class="mb-3">
-      <%= form.submit "Save", class: "btn btn-sm btn-primary" %>
+    <div class="mb-3 d-flex">
+      <%= form.submit "Save", class: "flex-grow-1 btn btn-sm btn-primary" %>
     </div>
   <% end %>
 </section>
