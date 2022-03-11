@@ -16,7 +16,13 @@
     </div>
 
     <div class="mb-3">
-      <%= form.label :members, class: "form-check-label" %>
+      <%= form.label :members, class: "form-check-label" %>  
+      <% if meeting[:members].size > 0 %>
+        <span class="badge bg-success position-relative">
+          Selected 
+          <span class="badge bg-danger"><%= meeting[:members].size %> </span>
+        </span>
+      <% end %>
       <% User.pluck(:email).each do |member| %>
         <div class="form-check">
           <input class="form-check-input" id=<%= member%> 
