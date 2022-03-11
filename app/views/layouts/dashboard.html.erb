@@ -10,7 +10,7 @@
 </head>
 
 <body>
-  <%= render "layouts/navbar" %>
+  <%= render "shared/navbar" %>
   <div id="wrapper">
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
@@ -20,8 +20,10 @@
       </ul>
     </div>
     <section class="container">
-      <%= render "layouts/flash_alert" %>
-      <%= yield %>
+      <%= render "shared/flash_alert" %>
+      <section class="p-5">
+        <%= yield %>
+      </section>
     </section>
   </div>
 

@@ -48,7 +48,7 @@ class RoomsController < DashboardsController
 
   # DELETE /rooms/1
   def destroy
-    authorize! :update, Room
+    authorize! :destroy, Room
     @room.destroy
 
     redirect_to rooms_url, notice: "Room was successfully destroyed."
