@@ -15,14 +15,18 @@ class MeetingsController < DashboardsController
 
   # GET /meetings/new
   def new
+    authorize! :create, Meeting
     @meeting = Meeting.new
   end
 
   # GET /meetings/1/edit
-  def edit; end
+  def edit
+    authorize! :update, Meeting
+  end
 
   # POST /meetings
   def create
+    authorize! :create, Meeting
     @meeting = Meeting.new(meeting_params)
     # save_members
 
@@ -36,6 +40,7 @@ class MeetingsController < DashboardsController
 
   # PATCH/PUT /meetings/1
   def update
+    authorize! :update, Meeting
     if @meeting.update(meeting_params)
       # save_members
       redirect_to meeting_url(@meeting), notice: "Meeting was successfully updated."
@@ -46,9 +51,24 @@ class MeetingsController < DashboardsController
 
   # DELETE /meetings/1
   def destroy
+    authorize! :destroy, Meeting
     @meeting.destroy
 
     redirect_to meetings_url, notice: "Meeting was successfully destroyed."
+  end
+
+  def send_mails
+    authorize! :update, Meeting
+    @meeting = Meeting.find_by_id(params[:meeting])
+    if @meeting
+      @meeting.members.each do |member|
+        MeetingMailer.with(meeting: @meeting, member: member).send_mail.deliver_now
+      end
+
+      redirect_to send_mails_path, notice: "Mail is sent to all members."
+    else
+      redirect_to send_mails_path, alert: "Could not sent mails."
+    end
   end
 
   private

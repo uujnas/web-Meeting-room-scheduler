@@ -1,10 +1,21 @@
 <section class="container">
-  <%= render @room%>
-  <% if can? :read, current_user %>
-  <%= link_to "Edit this room", edit_room_path(@room) %> |
-  <%= link_to "Back to rooms", rooms_path %>
-
-  <%= button_to "Destroy this room", @room, method: :delete %>
-  <% end %>
+  <div class="d-flex justify-content-between align-items-center">
+    <h4 class="text-success">
+      Room Details: 
+    </h4>
+    <div>
+      <% if can? :update, @room %>
+        <%= link_to "Edit", edit_room_path(@room), class: "btn btn-sm btn-primary" %>
+      <% end %>
+      <%= link_to "Back", :back, class: "btn btn-sm btn-secondary" %>
+    </div>
   </div>
+  <%= render @room %>
+
+  <% if can? :destroy, @room %>
+    <div>
+      <%= button_to "Destroy this room", @room, method: :delete, class: "btn btn-danger btn-sm" %>
+    </div>
+  <% end %>
 </section>
+
