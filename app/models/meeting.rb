@@ -9,6 +9,8 @@ class Meeting < ApplicationRecord
 
   validates_presence_of :date, :start_time, :end_time
 
+  validates_format_of :meeting_url, with: /\A(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w\.-]*)*\/?\Z/i
+
   validate :meeting_start_date
 
   validate :schedule

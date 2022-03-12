@@ -78,6 +78,6 @@ class MeetingsController < DashboardsController
   end
 
   def meeting_params
-    params.require(:meeting).permit(:subject, :room_id, :date, :start_time, :end_time, :user_id, members: [])
+    params.require(:meeting).permit(:subject, :meeting_url, :room_id, :date, :start_time, :end_time, :user_id, members: [])
   end
 end
