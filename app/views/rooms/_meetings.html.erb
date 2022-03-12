@@ -1,0 +1,37 @@
+<section class="rooms-header d-flex align-items-center justify-content-between pt-3 mb-1">
+  <h5 class="text-primary mb-0">Assigned meetings on this room</h5>
+  <% if can? :read, @meetings %>
+    <%= link_to "Insert new", new_meeting_path, class: "btn btn-sm btn-primary " %>
+  <% end %>
+</section>
+<table class="table table-hover">
+  <thead>
+    <tr style="font-size: .9rem">
+      <th scope="col">SN</th>
+      <th scope="col">Subject</th>
+      <th scope="col">Created By</th>
+      <th scope="col">Date</th>
+      <th>&nbsp;</th>
+    </tr>
+  </thead>
+  <tbody style="font-size: .9rem">
+    <% meetings.each_with_index do |meeting, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= meeting.subject %></td>
+        <td><%= meeting.room.user.email %></td>
+        <td><%= meeting.created_at %></td>
+        <td>
+          <div class="meeting-actions d-flex align-items-center justify-content-end">
+            <%= link_to "View", meeting, class: "btn btn-sm btn-success", style: "padding: 5px; font-size:.7rem" %> &nbsp;
+            <% if can? :update, meeting %>
+              <%= link_to "Edit", edit_meeting_path(meeting), class: "btn btn-primary btn-sm", style: "padding: 5px; font-size:.7rem" %> &nbsp;
+              <%= button_to "Remove", meeting, class: "btn btn-sm btn-danger", method: :delete, style: "padding: 5px; font-size:.7rem" %>
+            <% end %>
+            &nbsp;
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
