@@ -81,7 +81,7 @@ RSpec.describe Meeting, type: :model do
 
     it "should not be valid end_time\"00:00\" " do
       meeting = create_meeting
-      meeting.end_time = "000:00"
+      meeting.end_time = nil
 
       expect(meeting.valid?).to be_falsy
     end
