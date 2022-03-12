@@ -15,18 +15,19 @@
     </div>
     <div class="mb-3">
       <%= form.label :members, class: "form-check-label" %>
-      <% if meeting[:members].size > 0 %>
-        <span class="badge bg-success position-relative">
-          Selected 
-          <span class="badge bg-danger"><%= meeting[:members].size %> </span>
-        </span>
-      <% end %>
+      <%# <% if meeting[:members].size > 0 %>
+      <span class="badge bg-success position-relative selected-count-container">
+        Selected 
+        <span class="badge bg-danger" id="selected-count"><%= meeting[:members].size %> </span>
+      </span>
+      <%# <% end %>
       <% User.pluck(:email).each do |member| %>
         <div class="form-check">
-          <input class="form-check-input" id=<%= member%> 
+          <input class="form-check-input member" id=<%= member%> 
             <%= meeting.members.include?(member)? "checked": "" %> 
             type="checkbox" name= "meeting[members][]" 
-            value=<%= member%>  
+            value=<%= member%> 
+            onclick="update_count()" 
           />
           <label class="form-check-label" for=<%= member %>><%= member%></label>
           </div>
@@ -61,3 +62,7 @@
       </div>
     <% end %>
   </section>
+  <script>
+    setVisibility(Number(document.querySelector("#selected-count").innerHTML));
+  </script>
+
