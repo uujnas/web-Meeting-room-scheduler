@@ -12,6 +12,7 @@
       <li>Date: <%= @meeting.date %></li>
       <li>Start time: <%= @meeting.start_time.strftime('%H:%M %p') %></li>
       <li>End time: <%= @meeting.end_time.strftime('%H:%M %p') %></li>
+      <li>Host by: <%= @meeting.user.username %>(<%= @meeting.user.email %>)</li>
       <li>Members:</li>
       <% @meeting.members.each do |member| %>
         <ul>
