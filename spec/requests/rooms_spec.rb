@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-# frozen_string_literal: true
-
 # Request test
 require "rails_helper"
 
@@ -10,6 +8,7 @@ RSpec.describe "Rooms", type: :request do
 
   let(:valid_attributes) do
     {
+      id: 1,
       description: "Regarding onboarding on a new project, with new team members",
       user: current_user
     }
@@ -68,22 +67,11 @@ RSpec.describe "Rooms", type: :request do
         it "doesnot create room" do
           expect do
             sign_in current_user
-            post rooms_path, params: {room: invalid_attributes}
+            post rooms_path, params: { room: invalid_attributes }
           end.to change(Room, :count).by(0)
         end
       end
   end
-
-  # describe "GET /edit" do
-  #   it "render successful response" do
-  #     sign_in current_user
-  #     room = Room.create!(valid_attributes)
-  #     room.user = current_user
-  #     room.save!
-  #     get edit_room_url(room)
-  #     expect(response).to have_http_status(200)
-  #   end
-  # end
 
   describe "DELETE /destroy" do
     it "destroy requested room" do
@@ -93,7 +81,7 @@ RSpec.describe "Rooms", type: :request do
       room.save
       expect do
         delete room_url(room)
-      end.to change(Room, :count).by(0)
+      end.to change(Room, :count).by(-1)
     end
 
     it "redirects to the room list" do
@@ -102,7 +90,7 @@ RSpec.describe "Rooms", type: :request do
       room.user = current_user
       room.save
       delete room_path(room)
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(rooms_url)
     end
   end
 
