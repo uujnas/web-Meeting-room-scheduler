@@ -9,59 +9,60 @@
         </ul>
       </div>
     <% end %>
-
     <div class="mb-3">
       <%= form.label :subject, class: "form-label" %>
       <%= form.text_field :subject, class: "form-control" %>
     </div>
-
     <div class="mb-3">
-      <%= form.label :members, class: "form-check-label" %>  
-      <% if meeting[:members].size > 0 %>
-        <span class="badge bg-success position-relative">
-          Selected 
-          <span class="badge bg-danger"><%= meeting[:members].size %> </span>
-        </span>
-      <% end %>
+      <%= form.label :members, class: "form-check-label" %>
+      <%# <% if meeting[:members].size > 0 %>
+      <span class="badge bg-success position-relative selected-count-container">
+        Selected 
+        <span class="badge bg-danger" id="selected-count"><%= meeting[:members].size %> </span>
+      </span>
+      <%# <% end %>
       <% User.pluck(:email).each do |member| %>
         <div class="form-check">
-          <input class="form-check-input" id=<%= member%> 
+          <input class="form-check-input member" id=<%= member%> 
             <%= meeting.members.include?(member)? "checked": "" %> 
             type="checkbox" name= "meeting[members][]" 
-            value=<%= member%>  
+            value=<%= member%> 
+            onclick="update_count()" 
           />
           <label class="form-check-label" for=<%= member %>><%= member%></label>
-        </div>
-      <% end %>
-    </div>
+          </div>
+        <% end %>
+      </div>
+      <div class="mb-3">
+        <%= form.label :room_id, class: "form-label" %>
+        <%= form.select :room_id, Room.pluck(:id).map { |room| ["Room-#{room}", room]}, {}, class: "form-select"  %>
+      </div>
+      <div class="mb-3">
+        <%= form.label :date, class: "form-label" %>
+        <%= form.date_field :date, class: "form-control", required: true %>
+      </div>
+      <div class="mb-3">
+        <%= form.label :start_time, class: "form-label" %>
+        <%= form.time_field :start_time, class: "form-control", required: true %>
+      </div>
+      <div class="mb-3">
+        <%= form.label :end_time, class: "form-label" %>
+        <%= form.time_field :end_time, class: "form-control", required: true %>
+      </div>
+      <div class="mb-3">
+        <%= form.label :user_id, "Host By", class: "form-label" %>
+        <%= form.select :user_id, User.pluck(:email, :id), {}, class: "form-select" %>
+      </div>
+      <div class="mb-3">
+        <%= form.label :meeting_url, "Meeting URL", class: "form-label" %>
+        <%= form.url_field :meeting_url, class: "form-control", required: true %>
+      </div>
+      <div class="mb-3 d-flex">
+        <%= form.submit "Save", class: "flex-grow-1 btn btn-sm btn-primary" %>
+      </div>
+    <% end %>
+  </section>
+  <script>
+    setVisibility(Number(document.querySelector("#selected-count").innerHTML));
+  </script>
 
-    <div class="mb-3">
-      <%= form.label :room_id, class: "form-label" %>
-      <%= form.select :room_id, Room.pluck(:id).map { |room| ["Room-#{room}", room]}, {}, class: "form-select"  %>
-    </div>
-
-    <div class="mb-3">
-      <%= form.label :date, class: "form-label" %>
-      <%= form.date_field :date, class: "form-control", required: true %>
-    </div>
-
-    <div class="mb-3">
-      <%= form.label :start_time, class: "form-label" %>
-      <%= form.time_field :start_time, class: "form-control", required: true %>
-    </div>
-
-    <div class="mb-3">
-      <%= form.label :end_time, class: "form-label" %>
-      <%= form.time_field :end_time, class: "form-control", required: true %>
-    </div>
-
-    <div class="mb-3">
-      <%= form.label :user_id, "Host By", class: "form-label" %>
-      <%= form.select :user_id, User.pluck(:email, :id), {}, class: "form-select" %>
-    </div>
-
-    <div class="mb-3 d-flex">
-      <%= form.submit "Save", class: "flex-grow-1 btn btn-sm btn-primary" %>
-    </div>
-  <% end %>
-</section>

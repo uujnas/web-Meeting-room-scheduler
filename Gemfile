@@ -46,6 +46,7 @@ gem "bootsnap", require: false
 gem "cancancan"
 gem "devise"
 gem "dotenv-rails"
+gem "valid_url"
 
 # Use Sass to process CSS
 # gem "sassc-rails"
@@ -74,6 +75,6 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-  gem "webdrivers"
   gem "shoulda-matchers"
+  gem "webdrivers"
 end

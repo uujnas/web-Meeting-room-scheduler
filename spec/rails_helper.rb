@@ -1,10 +1,10 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-require 'spec_helper'
-ENV['RAILS_ENV'] ||= 'test'
-require_relative '../config/environment'
+require "spec_helper"
+ENV["RAILS_ENV"] ||= "test"
+require_relative "../config/environment"
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
-require 'rspec/rails'
+require "rspec/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -80,4 +80,32 @@ RSpec.configure do |config|
   # def current_user
   #   User.find(current_user)
   # end
+
+  def create_user
+    User.first_or_create!(
+      email: "sanju@gmail.com",
+      password: "password",
+      password_confirmation: "password",
+      role: "admin"
+    )
+  end
+
+  def create_room
+    Room.create(
+      description: "This is short description of room",
+      user: create_user
+    )
+  end
+
+  def create_meeting
+    Meeting.create(
+      subject: "ROR Trainee",
+      date: "2022-03-15",
+      start_time: "10:00 PM",
+      end_time: "11:00 PM",
+      user: create_user,
+      room: create_room,
+      meeting_url: ENV["MEETING_URL"]
+    )
+  end
 end

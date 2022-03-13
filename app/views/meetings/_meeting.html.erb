@@ -1,45 +1,42 @@
 <section class="container mt-2">
   <div id="<%= dom_id meeting %>">
-
     <table class="table table-striped">
-       
-         <tr>
-            <th>Subject:</th>
-            <td><%= meeting.subject %></td>
-          </tr>
-          <tr>
-            <th>Host by:</th>
-            <td><%= meeting.user.email %></td>
-          </tr>
-
-          <tr>
-            <th><strong>Room no:</strong></th>
-            <td><%= link_to "Room-#{meeting.room_id}", room_path(meeting.room) %></td>
-          </tr>
-
-          <tr>
-            <th>Date:</th>
-            <td><%= meeting.date %></td>
-          </tr>
-
-          <tr>
-            <th>Start time:</th>
-            <td><%= meeting.time_format(meeting.start_time) %></td>
-          </tr>
-
-          <tr>
-            <th>End time:</th>
-            <td><%= meeting.time_format(meeting.end_time) %></td>
-          </tr>
-
-          <tr>
-            <th><strong>Members:</strong></th>
-            <td>
-              <% meeting.members.each do |member| %>
-                <div><%= member %></div>
-              <% end %>
-            </td>
-          </tr>
+      <tr>
+        <th>Subject:</th>
+        <td><%= meeting.subject %></td>
+      </tr>
+      <tr>
+        <th>Host by:</th>
+        <td><%= meeting.user.username %> (<%= meeting.user.email %>)</td>
+      </tr>
+      <tr>
+        <th><strong>Room no:</strong></th>
+        <td><%= link_to "Room-#{meeting.room_id}", room_path(meeting.room) %></td>
+      </tr>
+      <tr>
+        <th>Date:</th>
+        <td><%= meeting.date %></td>
+      </tr>
+      <tr>
+        <th>Start time:</th>
+        <td><%= meeting.time_format(meeting.start_time) %></td>
+      </tr>
+      <tr>
+        <th>End time:</th>
+        <td><%= meeting.time_format(meeting.end_time) %></td>
+      </tr>
+      <tr>
+        <th>Meeting Link:</th>
+        <td><%= link_to meeting.meeting_url, meeting.meeting_url, target: "_blank" %></td>
+      </tr>
+      <tr>
+        <th><strong>Members:</strong></th>
+        <td>
+          <% meeting.members.each do |member| %>
+            <div><%= member %></div>
+          <% end %>
+        </td>
+      </tr>
     </table>
   </div>
 </section>

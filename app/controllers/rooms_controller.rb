@@ -11,7 +11,9 @@ class RoomsController < DashboardsController
   end
 
   # GET /rooms/1
-  def show; end
+  def show
+    @meetings = Meeting.where(room: @room)
+  end
 
   # GET /rooms/new
   def new

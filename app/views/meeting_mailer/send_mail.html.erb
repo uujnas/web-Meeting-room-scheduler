@@ -4,17 +4,15 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-
     <h4>Hello, <%= @member.username %></h4>
-
     <p> You have been added to the meeting <strong><%= @meeting.subject %></strong></p>
-     
     <h4>Meeting Details:</h4>
     <ul>
       <li>Room no: <%= @meeting.room_id %></li>
       <li>Date: <%= @meeting.date %></li>
       <li>Start time: <%= @meeting.start_time.strftime('%H:%M %p') %></li>
       <li>End time: <%= @meeting.end_time.strftime('%H:%M %p') %></li>
+      <li>Host by: <%= @meeting.user.username %>(<%= @meeting.user.email %>)</li>
       <li>Members:</li>
       <% @meeting.members.each do |member| %>
         <ul>
@@ -22,16 +20,12 @@
         </ul>
       <% end %>
     </ul>
-
     <p>
-      To join meeting, just follow this link: <a href=<%= @url %> target="_blank">click here</a>.
+      To join meeting, just follow this link: <a href=<%= @meeting.meeting_url %> target="_blank">click here</a>.
     </p>
-     
     <p>Thank you and have a great day!</p>
-     
     <h4>Regards</h4>
     <p>Bikash Shrestha</p>
     <p>bikashshrestha@bajratechnologies.com</p>
-
   </body>
 </html>
