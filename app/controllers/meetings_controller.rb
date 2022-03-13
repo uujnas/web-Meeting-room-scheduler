@@ -65,9 +65,9 @@ class MeetingsController < DashboardsController
         MeetingMailer.with(meeting: @meeting, member: member).send_mail.deliver_now
       end
 
-      redirect_to send_mails_path, notice: "Mail is sent to all members."
+      redirect_to send_mail_meetings_path, notice: "Mail is sent to all members."
     else
-      redirect_to send_mails_path, alert: "Could not sent mails."
+      redirect_to send_mail_meetings_path, alert: "Could not sent mails."
     end
   end
 
