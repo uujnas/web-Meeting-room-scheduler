@@ -26,7 +26,7 @@ class Meeting < ApplicationRecord
   end
 
   def start_and_end_time
-    if Time.parse(date.to_s) < Date.parse(Time.now.to_s) && (Time.parse(start_time.to_s) < Time.now)
+    if Date.parse(date.to_s) < Date.parse(Time.now.to_s) && (Time.parse(start_time.to_s) < Time.now)
       errors.add(:start_time, "can't be in the past!")
     end
 
