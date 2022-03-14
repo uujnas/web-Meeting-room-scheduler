@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Dashboard Controller
 class DashboardsController < ApplicationController
   layout "dashboard"
 
