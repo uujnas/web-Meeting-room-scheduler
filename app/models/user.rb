@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
   enum role: %i[admin participant]
   # Include default devise modules. Others available are:
