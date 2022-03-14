@@ -11,5 +11,6 @@ Rails.application.routes.draw do
     confirmations: "confirmations"
   }
   resources :rooms
+  get "users/show", to: "users#show"
   root "rooms#index"
 end

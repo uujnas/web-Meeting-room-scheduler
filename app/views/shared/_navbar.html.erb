@@ -13,6 +13,9 @@
       </ul>
       <div class="d-flex align-items-center">
         <% if user_signed_in? %>
+        <div class="nav_item_">
+           <%= link_to "Profile", users_show_path, class: "nav-link text-muted" %>
+        </div>
           <div class="nav-item_">
             <span class="nav-link text-white">WELCOME, <%= current_user.username.titleize %> !!</span>
           </div>
