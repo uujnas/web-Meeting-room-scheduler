@@ -7,7 +7,7 @@ class MeetingsController < DashboardsController
 
   # GET /meetings or
   def index
-    @meetings = Meeting.all.group_by(&:room)
+    @meetings = Meeting.all
   end
 
   # GET /meetings/1

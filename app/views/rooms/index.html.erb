@@ -1,11 +1,9 @@
-
 <section class="rooms-header d-flex align-items-center justify-content-between pt-3 mb-1">
   <h4 class="text-primary mb-0">Rooms</h4>
   <% if can? :read, current_user %>
-  <%= link_to "New room", new_room_path, class: "btn btn-primary " %>
+    <%= link_to "New room", new_room_path, class: "btn btn-primary " %>
   <% end %>
 </section>
-
 <table class="table table-hover">
   <thead class="table-primary">
     <tr>
@@ -18,22 +16,22 @@
   </thead>
   <tbody>
     <% @rooms.each_with_index do |room, index| %>
-    <tr>
-      <td><%= index + 1 %></td>
-      <td><%= room.description %></td>
-      <td><%= room.user.username.titleize %></td>
-      <td><%= room.created_at %></td>
-      <td>
-        <div class="room-actions d-flex align-items-center justify-content-end">
-          <%= link_to "View", room, class: "btn btn-sm btn-success" %> &nbsp;
-        <% if can? :update, @room %>
-          <%= link_to "Edit", edit_room_path(room), class: "btn btn-primary btn-sm" %> &nbsp;
-          <%= button_to "Remove", room, class: "btn btn-sm btn-danger", method: :delete %>
-          &nbsp;
-        <% end %>
-        </div>
-      </td>
-    </tr>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= room.description %></td>
+        <td><%= room.user.username.titleize %></td>
+        <td><%= room.created_at.strftime("%d/%m/%Y %H:%M %p") %></td>
+        <td>
+          <div class="room-actions d-flex align-items-center justify-content-end">
+            <%= link_to "View", room, class: "btn btn-sm btn-success" %> &nbsp;
+            <% if can? :update, @room %>
+              <%= link_to "Edit", edit_room_path(room), class: "btn btn-primary btn-sm" %> &nbsp;
+              <%= button_to "Remove", room, class: "btn btn-sm btn-danger", method: :delete %>
+              &nbsp;
+            <% end %>
+          </div>
+        </td>
+      </tr>
     <% end %>
   </tbody>
 </table>
