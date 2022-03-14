@@ -17,7 +17,7 @@
         <li><%= link_to "Rooms", rooms_path, class: "nav-link active" %></li>
         <li> <%= link_to "Meetings", meetings_path, class: "nav-link active" %></li>
         <% if current_user.admin? %>
-          <li><%= link_to "Send Mails", send_mails_path, class: "nav-link active" %></li>
+          <li><%= link_to "Send Mails", send_mails_meetings_path, class: "nav-link active" %></li>
         <% end %>
       </ul>
     </div>

@@ -1,8 +1,7 @@
-
 <section class="rooms-header d-flex align-items-center justify-content-between pt-3 mb-1">
   <h4 class="text-primary mb-0">Meetings</h4>
-   <% if can? :read, @meetings %>
-    <%= link_to "New Meeting", new_meeting_path, class: "btn btn-primary " %>
+  <% if can? :read, @meetings %>
+  <%= link_to "New Meeting", new_meeting_path, class: "btn btn-primary " %>
   <% end %>
 </section>
 
@@ -17,23 +16,33 @@
     </tr>
   </thead>
   <tbody>
-    <% @meetings.each_with_index do |meeting, index| %>
-      <tr>
-        <td><%= index + 1 %></td>
-        <td><%= meeting.subject %></td>
-        <td><%= meeting.room.user.email %></td>
-        <td><%= meeting.created_at %></td>
-        <td>
-          <div class="meeting-actions d-flex align-items-center justify-content-end">
-            <%= link_to "View", meeting, class: "btn btn-sm btn-success" %> &nbsp;
-             <% if can? :update, meeting %>
-              <%= link_to "Edit", edit_meeting_path(meeting), class: "btn btn-primary btn-sm" %> &nbsp;
-              <%= button_to "Remove", meeting, class: "btn btn-sm btn-danger", method: :delete %>
-             <% end %>
-            &nbsp;
-          </div>
-        </td>
-      </tr>
+
+    <% @meetings.each_with_index do |(room_meeting,meeting), index| %>
+    <tr>
+      <td> <%= index + 1 %></td>
+      <td> <%= room_meeting.description %></td>
+    </tr>
+    <tr>
+      <th>Meetings</th>
+    </tr>
+    <% meeting.each do |meeting| %>
+    <tr>
+      <td></td>
+      <td><%= meeting.subject %></td>
+      <td><%= meeting.room.user.email %></td>
+      <td><%= meeting.created_at %></td>
+      <td>
+        <div class="meeting-actions d-flex align-items-center justify-content-end">
+          <%= link_to "View", meeting, class: "btn btn-sm btn-success" %> &nbsp;
+          <% if can? :update, meeting %>
+          <%= link_to "Edit", edit_meeting_path(meeting), class: "btn btn-primary btn-sm" %> &nbsp;
+          <%= button_to "Remove", meeting, class: "btn btn-sm btn-danger", method: :delete %>
+          <% end %>
+          &nbsp;
+        </div>
+      </td>
+    </tr>
+    <% end%>
     <% end %>
   </tbody>
 </table>

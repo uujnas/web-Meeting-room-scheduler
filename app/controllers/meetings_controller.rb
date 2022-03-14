@@ -7,7 +7,7 @@ class MeetingsController < DashboardsController
 
   # GET /meetings or
   def index
-    @meetings = Meeting.all
+    @meetings = Meeting.all.group_by(&:room)
   end
 
   # GET /meetings/1
@@ -28,12 +28,10 @@ class MeetingsController < DashboardsController
   def create
     authorize! :create, Meeting
     @meeting = Meeting.new(meeting_params)
-    # save_members
 
     if @meeting.save
       redirect_to meeting_url(@meeting), notice: "Meeting was successfully created."
     else
-      # binding.break
       render :new, status: :unprocessable_entity
     end
   end
@@ -42,7 +40,6 @@ class MeetingsController < DashboardsController
   def update
     authorize! :update, Meeting
     if @meeting.update(meeting_params)
-      # save_members
       redirect_to meeting_url(@meeting), notice: "Meeting was successfully updated."
     else
       render :edit, status: :unprocessable_entity
@@ -65,9 +62,9 @@ class MeetingsController < DashboardsController
         MeetingMailer.with(meeting: @meeting, member: member).send_mail.deliver_now
       end
 
-      redirect_to send_mails_path, notice: "Mail is sent to all members."
+      redirect_to send_mail_meetings_path, notice: "Mail is sent to all members."
     else
-      redirect_to send_mails_path, alert: "Could not sent mails."
+      redirect_to send_mail_meetings_path, alert: "Could not sent mails."
     end
   end
 
