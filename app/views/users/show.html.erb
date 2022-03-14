@@ -1,0 +1,27 @@
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <section class="profil-info bg-light">
+      <div class="shadow-sm rounded p-3">
+        <h2 class="text-center text-primary"><%= @user.username.titleize %></h2>
+        <hr>
+        <div class="m-3">
+          <p><strong>Email Id</strong> <span class="float-end"><%= @user.email %></span></p>
+          <p><strong>Role</strong> <span class="float-end"><%= @user.role.titleize %></span></p>
+          <p><strong>Contact number</strong> <span class="float-end"><%= @user.contact %></span></p>
+          <p><strong>Address</strong> <span class="float-end"><%= @user.address.titleize %></span></p>
+          <p><strong>Created at</strong> <span class="float-end"><%= @user.created_at %></p>
+          <p><strong>Meeting</strong>
+          <% @meeting.each do |meeting| %>
+          <% meeting.members.each do |member| %>
+          <% if member == current_user.email %>
+          <span class="float-end"> <%= meeting.subject %></span></p>&nbsp;
+          <% end %>
+
+          <% end %>
+          <% end %>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
